@@ -27,9 +27,15 @@ public class GamePane extends Pane {
     private void handleKey(KeyEvent evt) {
         KeyCode code = evt.getCode();
         if(code == KeyCode.UP)
-            gateway.movePaddle(true);
+            gateway.movePaddle(1,0);
         else if(code == KeyCode.DOWN)
-            gateway.movePaddle(false);
+            gateway.movePaddle(-1,0);
+        else if(code == KeyCode.LEFT)
+            gateway.movePaddle(0,1);
+        else if(code == KeyCode.RIGHT)
+            gateway.movePaddle(0,-1);
+
+
     }
 
     @Override
@@ -49,7 +55,7 @@ class UpdateGameState implements Runnable {
     public void run() {
         while(true) {
             try {
-                Thread.sleep((long) 0000.1);
+                Thread.sleep(1);
                 if(gateway.open())
                     gateway.refresh();
                 else

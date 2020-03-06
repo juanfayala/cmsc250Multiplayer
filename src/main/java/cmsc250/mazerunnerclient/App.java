@@ -17,7 +17,7 @@ public class App extends Application {
         pane.requestFocus();
         stage.setScene(scene);
         stage.setOnCloseRequest(e->gateway.close());
-        stage.setTitle("Pong");
+        stage.setTitle("Maze Runner");
         stage.show();
     }
 
