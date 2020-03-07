@@ -67,12 +67,13 @@ public class GameGateway implements Constants {
         rightStart = new Rectangle();
         rightStart.setFill(Color.GREEN);
         shapes.add(rightStart);
-        
+        */
         // Goal area at bottom of window
-        goal = new Rectangle();
+        goal = new Rectangle(0,HEIGHT,WIDTH,HEIGHT/4);
         goal.setFill(Color.GREEN);
         shapes.add(goal);
-        */
+        
+        // Ball
         ball = new Circle(WIDTH/2,HEIGHT/4,MARGIN/4);
         ball.setFill(Color.BLACK);
         shapes.add(ball);
@@ -113,6 +114,12 @@ public class GameGateway implements Constants {
         ball.setCenterY(Double.parseDouble(parts[1]));
         leftPaddle.setY(Double.parseDouble(parts[2]));
         rightPaddle.setY(Double.parseDouble(parts[3]));
+        // Added these lines for client to get the x coords from server
+        leftPaddle.setX(Double.parseDouble(parts[4]));
+        rightPaddle.setX(Double.parseDouble(parts[5]));
+        goal.setX(Double.parseDouble(parts[6]));
+        goal.setY(Double.parseDouble(parts[7]));
+
     }
     
     public void close() {
