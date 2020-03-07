@@ -25,7 +25,6 @@ public class GameGateway implements Constants {
     Rectangle rightPaddle;
     Rectangle leftStart;
     Rectangle rightStart;
-    Rectangle goal;
     Circle ball;
     boolean isOpen = true;
     
@@ -50,29 +49,16 @@ public class GameGateway implements Constants {
         
         // Player 1
         leftPaddle = new Rectangle(MARGIN,MARGIN,THICKNESS,LENGTH);
-        leftPaddle.setFill(Color.RED);
+        leftPaddle.setFill(Color.web("#cc3300")); //RED
+        leftPaddle.setStroke(Color.BLACK);
         shapes.add(leftPaddle);
         
         // Player 2
         rightPaddle = new Rectangle(WIDTH-MARGIN-THICKNESS,MARGIN,THICKNESS,LENGTH);
-        rightPaddle.setFill(Color.BLUE);
+        rightPaddle.setFill(Color.web("#3366cc")); //BLUE
+        rightPaddle.setStroke(Color.BLACK);
         shapes.add(rightPaddle);
-        /*
-        // Starting area for player 1
-        leftStart = new Rectangle(MARGIN,MARGIN,THICKNESS,LENGTH);
-        leftStart.setFill(Color.GREEN);
-        shapes.add(leftStart);
-        
-        // Starting area for player 2
-        rightStart = new Rectangle();
-        rightStart.setFill(Color.GREEN);
-        shapes.add(rightStart);
-        */
-        // Goal area at bottom of window
-        goal = new Rectangle(0,HEIGHT,WIDTH,HEIGHT/4);
-        goal.setFill(Color.GREEN);
-        shapes.add(goal);
-        
+
         // Ball
         ball = new Circle(WIDTH/2,HEIGHT/4,MARGIN/4);
         ball.setFill(Color.BLACK);
@@ -117,8 +103,6 @@ public class GameGateway implements Constants {
         // Added these lines for client to get the x coords from server
         leftPaddle.setX(Double.parseDouble(parts[4]));
         rightPaddle.setX(Double.parseDouble(parts[5]));
-        goal.setX(Double.parseDouble(parts[6]));
-        goal.setY(Double.parseDouble(parts[7]));
 
     }
     
