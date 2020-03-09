@@ -33,6 +33,7 @@ public class GameGateway implements Constants {
     Rectangle win2;
     Label lives1;
     Label lives2;
+    private int playerWin = 0;
     boolean isOpen = true;
 
     public GameGateway() {
@@ -75,7 +76,7 @@ public class GameGateway implements Constants {
     /* Move the player's paddle
     *  1 -> increases x or y
     *  -1 -> decreases x or y
-     */
+    */
     public synchronized void movePaddle(int y, int x) {
         if (y == 1) {
             outputToServer.println(MOVE_UP);
@@ -100,51 +101,32 @@ public class GameGateway implements Constants {
             System.out.println("Exception in GameGateway.");
             ex.printStackTrace();
         }
-        // TODO: Add paddle setX
         String parts[] = state.split(" ");
 
-        // Check if player 1(RED) has reached goal
-        if (Double.parseDouble(parts[0]) > HEIGHT - 25) {
-            // Give player win
-            win(1);
-        } else {
-            leftPaddle.setY(Double.parseDouble(parts[0]));
-        }
-
-        // Check if player 2(BLUE) has reached goal
-        if (Double.parseDouble(parts[1]) > HEIGHT - 25) {
-            // Give player win
-            win(2);
-        } else {
-            rightPaddle.setY(Double.parseDouble(parts[1]));
-        }
+        leftPaddle.setY(Double.parseDouble(parts[0]));
+        rightPaddle.setY(Double.parseDouble(parts[1]));
 
         // Added these lines for client to get the x coords from server
         leftPaddle.setX(Double.parseDouble(parts[2]));
         rightPaddle.setX(Double.parseDouble(parts[3]));
 
-    }
-
-    // Winner screen
-    public void win(int player) {
-        if (player == 1) {
-            win1 = new Rectangle();
-            win1.setFill(Color.web("#cc3300")); //RED
-            win1.setX(0);
-            win1.setY(0);
-            win1.setWidth(WIDTH);
-            win1.setHeight(HEIGHT);
-            pane.getChildren().add(win1);
+        // Added this line to set the winning player when goal is met
+        playerWin = Integer.parseInt(parts[4]);
+        // Check which player won the game
+        if (playerWin == 1) {
+            // player 1 wins
+            System.out.println("Red Player Wins!");
+            close();
+            //TODO: OPEN WIN OR LOSE PANE
+        } else if (playerWin == 2) {
+            // player 2 wins
+            System.out.println("Blue Player Wins!");
+            close();
+            //TODO: OPEN WIN OR LOSE PANE
         } else {
-            win2 = new Rectangle();
-            win2.setFill(Color.web("#3366cc")); //BLUE
-            win2.setX(0);
-            win2.setY(0);
-            win2.setWidth(WIDTH);
-            win2.setHeight(HEIGHT);
-            pane.getChildren().add(win2);
-
+            //Do nothing, nobody has won yet
         }
+
     }
 
     public void close() {
