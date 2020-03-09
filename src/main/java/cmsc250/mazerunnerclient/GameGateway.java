@@ -33,7 +33,6 @@ public class GameGateway implements Constants {
     Rectangle win2;
     Label lives1;
     Label lives2;
-    Circle ball;
     boolean isOpen = true;
 
     public GameGateway() {
@@ -66,11 +65,6 @@ public class GameGateway implements Constants {
         rightPaddle.setFill(Color.web("#3366cc")); //BLUE
         rightPaddle.setStroke(Color.BLACK);
         shapes.add(rightPaddle);
-
-        // Ball
-        ball = new Circle(WIDTH / 2, HEIGHT / 4, MARGIN / 4);
-        ball.setFill(Color.BLACK);
-        shapes.add(ball);
 
     }
 
@@ -108,28 +102,26 @@ public class GameGateway implements Constants {
         }
         // TODO: Add paddle setX
         String parts[] = state.split(" ");
-        ball.setCenterX(Double.parseDouble(parts[0]));
-        ball.setCenterY(Double.parseDouble(parts[1]));
 
         // Check if player 1(RED) has reached goal
-        if (Double.parseDouble(parts[2]) > HEIGHT - 25) {
+        if (Double.parseDouble(parts[0]) > HEIGHT - 25) {
             // Give player win
             win(1);
         } else {
-            leftPaddle.setY(Double.parseDouble(parts[2]));
+            leftPaddle.setY(Double.parseDouble(parts[0]));
         }
 
         // Check if player 2(BLUE) has reached goal
-        if (Double.parseDouble(parts[3]) > HEIGHT - 25) {
+        if (Double.parseDouble(parts[1]) > HEIGHT - 25) {
             // Give player win
             win(2);
         } else {
-            rightPaddle.setY(Double.parseDouble(parts[3]));
+            rightPaddle.setY(Double.parseDouble(parts[1]));
         }
 
         // Added these lines for client to get the x coords from server
-        leftPaddle.setX(Double.parseDouble(parts[4]));
-        rightPaddle.setX(Double.parseDouble(parts[5]));
+        leftPaddle.setX(Double.parseDouble(parts[2]));
+        rightPaddle.setX(Double.parseDouble(parts[3]));
 
     }
 

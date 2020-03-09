@@ -55,7 +55,7 @@ public class WinScreenPane extends Pane{
         this.setPrefHeight(Constants.HEIGHT);
         this.setBackground(new Background(new BackgroundFill(Color.web("#424242"), CornerRadii.EMPTY, Insets.EMPTY))); //DARK GREY
 
-        new Thread(new UpdateGameState(gateway)).start();
+      /*  new Thread(new UpdateGameState(gateway)).start(); */
      }
       @Override
     public boolean isResizable() {
@@ -63,7 +63,7 @@ public class WinScreenPane extends Pane{
     }
 
 }
-
+/*
 class UpdateGameState implements Runnable {
 
     private GameGateway gateway;
@@ -86,4 +86,4 @@ class UpdateGameState implements Runnable {
             }
     }
     }
-}
+}*/
