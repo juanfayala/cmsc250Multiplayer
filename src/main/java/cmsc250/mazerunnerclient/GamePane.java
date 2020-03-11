@@ -107,7 +107,7 @@ public class GamePane extends Pane {
         }
 
     }
-
+    
     @Override
     public boolean isResizable() {
         return false;
