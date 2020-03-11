@@ -123,6 +123,7 @@ public class GameGateway implements Constants {
             System.out.println("Blue Player Wins!");
             close();
             //TODO: OPEN WIN OR LOSE PANE
+            
         } else {
             //Do nothing, nobody has won yet
         }
