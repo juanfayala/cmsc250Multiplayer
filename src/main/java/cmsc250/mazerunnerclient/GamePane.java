@@ -60,7 +60,7 @@ public class GamePane extends Pane {
         goal.setHeight(HEIGHT);
 
         // Player 1 life label
-        lives1 = new Label("Lives: 5");
+        lives1 = new Label("Fails: ");
         lives1.setFont(new Font("Helvetica Bold", 16));
         lives1.setTextFill(Color.WHITE);
         lives1.setMinWidth(20);
@@ -69,7 +69,7 @@ public class GamePane extends Pane {
         lives1.setLayoutY(0);
 
         // Player 2 life label
-        lives2 = new Label("Lives: 5");
+        lives2 = new Label("Fails: ");
         lives2.setFont(new Font("Helvetica Bold", 16));
         lives2.setTextFill(Color.WHITE);
         lives2.setMinWidth(20);
