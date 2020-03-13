@@ -3,6 +3,7 @@ package cmsc250.mazerunnerclient;
 import static cmsc250.mazerunnerclient.Constants.HEIGHT;
 import static cmsc250.mazerunnerclient.Constants.WIDTH;
 import static cmsc250.mazerunnerclient.Constants.MARGIN;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
@@ -136,6 +137,6 @@ class UpdateGameState implements Runnable {
             } catch (Exception ex) {
 
             }
+                }
         }
     }
-}

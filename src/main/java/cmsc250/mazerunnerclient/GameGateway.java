@@ -455,7 +455,7 @@ public class GameGateway implements Constants {
         if (checkShapeIntersection(leftPaddle)) {
             outputToServer.println(LEFT_COLLISION);
             outputToServer.flush();
-            fails1.setText(failCount1);
+            setLabelText(fails1, failCount1);
         } else {
             leftPaddle.setY(Double.parseDouble(parts[0]));
             leftPaddle.setX(Double.parseDouble(parts[2]));
@@ -463,7 +463,7 @@ public class GameGateway implements Constants {
         if (checkShapeIntersection(rightPaddle)) {
             outputToServer.println(RIGHT_COLLISION);
             outputToServer.flush();
-            fails2.setText(failCount2);
+            setLabelText(fails2, failCount2);
         } else {
             rightPaddle.setY(Double.parseDouble(parts[1]));
             rightPaddle.setX(Double.parseDouble(parts[3]));
@@ -501,6 +501,16 @@ public class GameGateway implements Constants {
         }
 
         return false;
+    }
+    
+    public void setLabelText(Label label, String text) {
+        Platform.runLater(new Runnable() {
+
+            @Override
+            public void run() {
+                label.setText(text);
+            }
+         });
     }
 
     public void close() {
