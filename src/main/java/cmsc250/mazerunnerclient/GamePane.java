@@ -82,6 +82,7 @@ public class GamePane extends Pane {
 
         this.gateway = gateway;
         this.getChildren().addAll(gateway.getShapes());
+        this.getChildren().addAll(gateway.getLabels());
         this.setOnKeyPressed(e -> handleKey(e));
         this.setMinWidth(USE_PREF_SIZE);
         this.setMaxWidth(USE_PREF_SIZE);

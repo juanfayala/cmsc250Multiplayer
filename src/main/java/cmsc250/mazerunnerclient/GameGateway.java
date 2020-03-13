@@ -32,9 +32,9 @@ public class GameGateway implements Constants {
     Rectangle win1;
     Rectangle win2;
     Label fails1;
-    int failCount1 = 0;
+    String failCount1 = "0";
     Label fails2;
-    int failCount2 = 0;
+    String failCount2 = "0";
     private int playerWin = 0;
     boolean isOpen = true;
     private Circle movingBall1;
@@ -43,6 +43,7 @@ public class GameGateway implements Constants {
     private Circle movingBall4;
     private Circle movingBall5;
     private List<Shape> obstacles;
+    private List<Label> labels;
     private boolean collisionDetected;
 
     public GameGateway() {
@@ -64,6 +65,7 @@ public class GameGateway implements Constants {
         // Make the shapes
         shapes = new ArrayList<Shape>();
         obstacles = new ArrayList<Shape>();
+        labels = new ArrayList<Label>();
 
         // Player 1
         leftPaddle = new Rectangle(MARGIN, MARGIN, THICKNESS, LENGTH);
@@ -71,15 +73,14 @@ public class GameGateway implements Constants {
         leftPaddle.setStroke(Color.BLACK);
         shapes.add(leftPaddle);
 
-        fails1 = new Label("0");
+        fails1 = new Label();
         fails1.setFont(new Font("Helvetica Bold", 16));
         fails1.setTextFill(Color.WHITE);
         fails1.setMinWidth(20);
         fails1.setMinHeight(10);
         fails1.setLayoutX(45.0);
         fails1.setLayoutY(0);
-        //shapes.add(fails1);
-        // NEED TO ADD TO PANE
+        labels.add(fails1);
 
         // Player 2
         rightPaddle = new Rectangle(WIDTH - MARGIN - THICKNESS, MARGIN, THICKNESS, LENGTH);
@@ -87,19 +88,19 @@ public class GameGateway implements Constants {
         rightPaddle.setStroke(Color.BLACK);
         shapes.add(rightPaddle);
 
-        fails2 = new Label("0");
+        fails2 = new Label();
         fails2.setFont(new Font("Helvetica Bold", 16));
         fails2.setTextFill(Color.WHITE);
         fails2.setMinWidth(20);
         fails2.setMinHeight(10);
         fails2.setLayoutX(625.0);
         fails2.setLayoutY(0);
-        
+        labels.add(fails2);
+
         Circle circle = new Circle(WIDTH / 2, HEIGHT / 4, MARGIN / 2);
         circle.setFill(Color.WHITE);
         shapes.add(circle);
         obstacles.add(circle);
-
         Circle circle1 = new Circle(WIDTH / 4, HEIGHT / 4, MARGIN / 2);
         circle1.setFill(Color.WHITE);
         shapes.add(circle1);
@@ -313,10 +314,88 @@ public class GameGateway implements Constants {
         circle48.setFill(Color.WHITE);
         shapes.add(circle48);
         obstacles.add(circle48);
+        Circle circle49 = new Circle(WIDTH/4.5 + WIDTH/14.5,HEIGHT/2.7,MARGIN/2);
+        circle49.setFill(Color.WHITE);
+        shapes.add(circle49);
+        obstacles.add(circle49);
+       
+        Circle circle50 = new Circle(WIDTH/2.75 + WIDTH/14.5,HEIGHT/2.7,MARGIN/2);
+        circle50.setFill(Color.WHITE);
+        shapes.add(circle50);
+        obstacles.add(circle50);
+       
+        Circle circle51 = new Circle(WIDTH/1.9 + WIDTH/5,HEIGHT/2.7,MARGIN/2);
+        circle51.setFill(Color.WHITE);
+        shapes.add(circle51);
+        obstacles.add(circle51);
+       
+        Circle circle52 = new Circle(WIDTH/42 + WIDTH/22,HEIGHT/2.7,MARGIN/2);
+        circle52.setFill(Color.WHITE);
+        shapes.add(circle52);
+        obstacles.add(circle52);
+       
+        Circle circle53 = new Circle(WIDTH/29 + WIDTH/9,HEIGHT/2.7,MARGIN/2);
+        circle53.setFill(Color.WHITE);
+        shapes.add(circle53);
+        obstacles.add(circle53);
+       
+        Circle circle54 = new Circle(WIDTH/29 + WIDTH/9,HEIGHT/1.8,MARGIN/2);
+        circle54.setFill(Color.WHITE);
+        shapes.add(circle54);
+        obstacles.add(circle54);
+       
+        Circle circle55 = new Circle(WIDTH/11 + WIDTH/5,HEIGHT/1.8,MARGIN/2);
+        circle55.setFill(Color.WHITE);
+        shapes.add(circle55);
+        obstacles.add(circle55);
+       
+        Circle circle56 = new Circle(WIDTH/8 + WIDTH/3,HEIGHT/1.8,MARGIN/2);
+        circle56.setFill(Color.WHITE);
+        shapes.add(circle56);
+        obstacles.add(circle56);
+       
+        Circle circle57 = new Circle(WIDTH/5 + WIDTH/2.3,HEIGHT/1.8,MARGIN/2);
+        circle57.setFill(Color.WHITE);
+        shapes.add(circle57);
+        obstacles.add(circle57);
+       
+        Circle circle58 = new Circle(WIDTH/5 + WIDTH/2.3,HEIGHT/3.7,MARGIN/2);
+        circle58.setFill(Color.WHITE);
+        shapes.add(circle58);
+        obstacles.add(circle58);
+       
+         Circle circle59 = new Circle(WIDTH/5 + WIDTH/2.3,HEIGHT/3.7,MARGIN/2);
+        circle59.setFill(Color.WHITE);
+        shapes.add(circle59);
+        obstacles.add(circle59);
+       
+        Circle circle60 = new Circle(WIDTH/3 + WIDTH/2,HEIGHT/4,MARGIN/2);
+        circle60.setFill(Color.WHITE);
+        shapes.add(circle60);
+        obstacles.add(circle60);
+       
+        Circle circle61 = new Circle(WIDTH/2 + WIDTH/2.5,HEIGHT/3,MARGIN/2);
+        circle61.setFill(Color.WHITE);
+        shapes.add(circle61);
+        obstacles.add(circle61);
+       
+        Circle circle62 = new Circle(WIDTH/2 + WIDTH/2.5,HEIGHT/2,MARGIN/2);
+        circle62.setFill(Color.WHITE);
+        shapes.add(circle62);
+        obstacles.add(circle62);
+       
+        Circle circle63 = new Circle(WIDTH/2 + WIDTH/2.5,HEIGHT/1.4,MARGIN/2);
+        circle63.setFill(Color.WHITE);
+        shapes.add(circle63);
+        obstacles.add(circle63);
     }
 
     public List<Shape> getShapes() {
         return shapes;
+    }
+    
+    public List<Label> getLabels() {
+        return labels;
     }
 
     /* Move the player's paddle
@@ -368,28 +447,24 @@ public class GameGateway implements Constants {
         movingBall4.setCenterY(Double.parseDouble(parts[12]));
         movingBall5.setCenterX(Double.parseDouble(parts[13]));
         movingBall5.setCenterY(Double.parseDouble(parts[14]));
-        
-        failCount1 = Integer.parseInt(parts[15]);
-        failCount2 = Integer.parseInt(parts[16]);
+
+        failCount1 = parts[15];
+        failCount2 = parts[16];
 
         // If collision has occurred, reset positions
         if (checkShapeIntersection(leftPaddle)) {
-            leftPaddle.setFill(Color.WHITE);
             outputToServer.println(LEFT_COLLISION);
             outputToServer.flush();
-            fails1.setText(Integer.toString(failCount1));
+            fails1.setText(failCount1);
         } else {
-            leftPaddle.setFill(Color.web("#cc3300"));
             leftPaddle.setY(Double.parseDouble(parts[0]));
             leftPaddle.setX(Double.parseDouble(parts[2]));
         }
         if (checkShapeIntersection(rightPaddle)) {
-            rightPaddle.setFill(Color.WHITE);
             outputToServer.println(RIGHT_COLLISION);
             outputToServer.flush();
-            fails2.setText(Integer.toString(failCount2));
+            fails2.setText(failCount2);
         } else {
-            rightPaddle.setFill(Color.web("#3366cc"));
             rightPaddle.setY(Double.parseDouble(parts[1]));
             rightPaddle.setX(Double.parseDouble(parts[3]));
         }
